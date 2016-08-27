@@ -71,7 +71,7 @@
             }
             _length++;
         }
-        else if([ch  isEqual: @"×"] || [ch  isEqual: @"/"]){
+        else if([ch  isEqual: @"×"] || [ch  isEqual: @"÷"]){
             [_stack2 push:num];
             num = [[NSMutableString alloc]initWithString:@""];
             if([_stack1 isEmpty]){
@@ -79,7 +79,7 @@
                 [_stack1 push:ch];
             }
             else{
-                for(NSMutableString *top = [_stack1 TopElement];![top  isEqual: @"#"];top = [_stack1 TopElement]){
+                for(NSMutableString *top = [_stack1 TopElement];![top  isEqual: @"#"] && ![top  isEqual: @"+"] && ![top  isEqual: @"−"];top = [_stack1 TopElement]){
                     if([top  isEqual: @"("]){
                         break;
                     }
@@ -144,7 +144,7 @@
             else if([a  isEqual: @"÷"]){
                 double num1 = [[_stack4 popTopElement]doubleValue];
                 double num2 = [[_stack4 popTopElement]doubleValue];
-                NSMutableString *num4 = [NSMutableString stringWithFormat:@"%.1f",num1 / num2];
+                NSMutableString *num4 = [NSMutableString stringWithFormat:@"%.1f",num2 / num1];
                 [_stack4 push:num4];
             }
         }
